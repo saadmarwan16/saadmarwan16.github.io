@@ -1,0 +1,1172 @@
+openapi: 3.0.0
+info:
+  title: Todoist
+  description: >-
+    ## About Us
+
+
+    ##### **Todoist** is a software used to manage your tasks in the form of **todos**
+  contact: {}
+  version: '1.0'
+servers:
+- url: http://localhost:8080
+  variables: {}
+paths:
+  /new:
+    post:
+      tags:
+      - Todos
+      summary: New todo
+      description: Create a new todo
+      operationId: Newtodo
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/NewtodoRequest'
+              - example:
+                  body: Take a walk for 75 minutes
+            example:
+              body: Take a walk for 75 minutes
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '149'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"95-9omXM4M+aYvaAmwuvdB9bi69k/Q"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:15:00 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/201CREATED'
+                - example:
+                    todo:
+                      id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+                      body: Take a walk for 55 minutes
+                      timestamp: 2023-02-02T18:15:00.771Z
+                      isCompleted: false
+              example:
+                todo:
+                  id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+                  body: Take a walk for 55 minutes
+                  timestamp: 2023-02-02T18:15:00.771Z
+                  isCompleted: false
+        '400':
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '54'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"36-stkaW5TiNbyiyW8qAcnoVozS94k"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:16:32 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/400BAD_REQUEST1'
+                - example:
+                    status: FAIL
+                    message: body is a required field
+              example:
+                status: FAIL
+                message: body is a required field
+        '500':
+          description: Internal Server Error
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '65'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"41-rCYYwYCIpgmfb1VIrbYCX/LeqZg"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:17:37 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/500INTERNAL_SERVER_ERROR1'
+                - example:
+                    status: ERROR
+                    message: Something very unexpected happened
+              example:
+                status: ERROR
+                message: Something very unexpected happened
+      deprecated: false
+  /{id}:
+    get:
+      tags:
+      - Todos
+      summary: Get a todo
+      description: Get the details of a single todo
+      operationId: Getatodo
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '149'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"95-9omXM4M+aYvaAmwuvdB9bi69k/Q"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:18:23 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/200OK'
+                - example:
+                    todo:
+                      id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+                      body: Take a walk for 55 minutes
+                      timestamp: 2023-02-02T18:15:00.771Z
+                      isCompleted: false
+              example:
+                todo:
+                  id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+                  body: Take a walk for 55 minutes
+                  timestamp: 2023-02-02T18:15:00.771Z
+                  isCompleted: false
+        '404':
+          description: Not Found
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '67'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"43-g8i3IYSyCC3Gr5aUJaJiDPjy7SQ"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:18:49 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/404NOT_FOUND1'
+                - example:
+                    status: FAIL
+                    message: Could not find the requested resource
+              example:
+                status: FAIL
+                message: Could not find the requested resource
+        '500':
+          description: Internal Server Error
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '65'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"41-rCYYwYCIpgmfb1VIrbYCX/LeqZg"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:19:44 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/500INTERNAL_SERVER_ERROR1'
+                - example:
+                    status: ERROR
+                    message: Something very unexpected happened
+              example:
+                status: ERROR
+                message: Something very unexpected happened
+      deprecated: false
+  /:
+    get:
+      tags:
+      - Todos
+      summary: Get all todos
+      description: Get all todo resources that exist and paginated them
+      operationId: Getalltodos
+      parameters:
+      - name: tab
+        in: query
+        description: ''
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: all
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '706'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"2c2-ZUFC8XrEyFqoeGJh3i9SzEFQQiA"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:10:13 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/200OK1'
+                - example:
+                    todos:
+                    - id: df3f2ecf-aa0b-4ce9-8bc7-685f76ad4e0e
+                      body: Do something fun
+                      timestamp: 2023-02-02T16:30:24.703Z
+                      isCompleted: false
+                    - id: 8e8111cb-007f-4ec1-80af-c54c1cf9609e
+                      body: Take a walk for 35 minutes
+                      timestamp: 2023-02-02T16:39:18.591Z
+                      isCompleted: false
+                    - id: f083fbfb-c60c-46a6-8dac-5c5a5113c0ee
+                      body: Take a walk for 40 minutes
+                      timestamp: 2023-02-02T16:39:46.623Z
+                      isCompleted: false
+                    - id: 4385b53c-3e53-4a18-b54d-e1478ca16ae5
+                      body: Take a walk for 45 minutes
+                      timestamp: 2023-02-02T16:40:41.062Z
+                      isCompleted: false
+                    - id: 4e8d03a6-6eae-48ce-b7c6-78c57f2f894c
+                      body: Take a walk for 50 minutes
+                      timestamp: 2023-02-02T16:44:46.954Z
+                      isCompleted: false
+              example:
+                todos:
+                - id: df3f2ecf-aa0b-4ce9-8bc7-685f76ad4e0e
+                  body: Do something fun
+                  timestamp: 2023-02-02T16:30:24.703Z
+                  isCompleted: false
+                - id: 8e8111cb-007f-4ec1-80af-c54c1cf9609e
+                  body: Take a walk for 35 minutes
+                  timestamp: 2023-02-02T16:39:18.591Z
+                  isCompleted: false
+                - id: f083fbfb-c60c-46a6-8dac-5c5a5113c0ee
+                  body: Take a walk for 40 minutes
+                  timestamp: 2023-02-02T16:39:46.623Z
+                  isCompleted: false
+                - id: 4385b53c-3e53-4a18-b54d-e1478ca16ae5
+                  body: Take a walk for 45 minutes
+                  timestamp: 2023-02-02T16:40:41.062Z
+                  isCompleted: false
+                - id: 4e8d03a6-6eae-48ce-b7c6-78c57f2f894c
+                  body: Take a walk for 50 minutes
+                  timestamp: 2023-02-02T16:44:46.954Z
+                  isCompleted: false
+        '500':
+          description: Internal Server Error
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '65'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"41-rCYYwYCIpgmfb1VIrbYCX/LeqZg"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:12:18 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/500INTERNAL_SERVER_ERROR1'
+                - example:
+                    status: ERROR
+                    message: Something very unexpected happened
+              example:
+                status: ERROR
+                message: Something very unexpected happened
+      deprecated: false
+  /update/{id}:
+    patch:
+      tags:
+      - Todos
+      summary: Update a todo
+      description: Update a single todo resource
+      operationId: Updateatodo
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+              - $ref: '#/components/schemas/UpdateatodoRequest'
+              - example:
+                  body: Take a run for 75 minutes
+                  isCompleted: true
+            example:
+              body: Take a run for 75 minutes
+              isCompleted: true
+        required: true
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '147'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"93-TzpIpQbbf11zyrx55Bpz71DKF8s"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:20:12 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/200OK'
+                - example:
+                    todo:
+                      id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+                      body: Take a run for 75 minutes
+                      timestamp: 2023-02-02T18:15:00.771Z
+                      isCompleted: true
+              example:
+                todo:
+                  id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+                  body: Take a run for 75 minutes
+                  timestamp: 2023-02-02T18:15:00.771Z
+                  isCompleted: true
+        '400':
+          description: Bad Request
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '54'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"36-stkaW5TiNbyiyW8qAcnoVozS94k"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:21:17 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/400BAD_REQUEST1'
+                - example:
+                    status: FAIL
+                    message: body is a required field
+              example:
+                status: FAIL
+                message: body is a required field
+        '404':
+          description: Not Found
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '66'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"42-adqmZIZv13VR+Yw6MzEW57eMvWo"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:20:28 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/404NOT_FOUND1'
+                - example:
+                    status: FAIL
+                    message: The resource to update was not found
+              example:
+                status: FAIL
+                message: The resource to update was not found
+        '500':
+          description: Internal Server Error
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '65'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"41-rCYYwYCIpgmfb1VIrbYCX/LeqZg"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:22:27 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/500INTERNAL_SERVER_ERROR1'
+                - example:
+                    status: ERROR
+                    message: Something very unexpected happened
+              example:
+                status: ERROR
+                message: Something very unexpected happened
+      deprecated: false
+  /delete/{id}:
+    delete:
+      tags:
+      - Todos
+      summary: Delete a todo
+      description: Delete a todo resource
+      operationId: Deleteatodo
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        style: simple
+        schema:
+          type: string
+          example: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+      responses:
+        '204':
+          description: No Content
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"4-K+iMpCQsduglOsYkdIUQZQMtaDM"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:23:34 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content: {}
+        '404':
+          description: Not Found
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '66'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"42-qMCDnSc8bnlr7uUgmLLpilQOiXI"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:23:53 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/404NOT_FOUND1'
+                - example:
+                    status: FAIL
+                    message: The resource to delete was not found
+              example:
+                status: FAIL
+                message: The resource to delete was not found
+        '500':
+          description: Internal Server Error
+          headers:
+            X-Powered-By:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Express
+            Access-Control-Allow-Origin:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '*'
+            Content-Length:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: '65'
+            ETag:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: W/"41-rCYYwYCIpgmfb1VIrbYCX/LeqZg"
+            Date:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: Thu, 02 Feb 2023 18:22:57 GMT
+            Connection:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: keep-alive
+            Keep-Alive:
+              content:
+                text/plain:
+                  schema:
+                    type: string
+                  example: timeout=5
+          content:
+            application/json; charset=utf-8:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/500INTERNAL_SERVER_ERROR1'
+                - example:
+                    status: ERROR
+                    message: Something very unexpected happened
+              example:
+                status: ERROR
+                message: Something very unexpected happened
+      deprecated: false
+  /some/some:
+    get:
+      tags:
+      - Misc
+      summary: Unhandled route
+      description: This route will handle requests to endpoints that cannot be found
+      operationId: Unhandledroute
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    NewtodoRequest:
+      title: NewtodoRequest
+      required:
+      - body
+      type: object
+      properties:
+        body:
+          type: string
+      example:
+        body: Take a walk for 75 minutes
+    201CREATED:
+      title: 201CREATED
+      required:
+      - todo
+      type: object
+      properties:
+        todo:
+          $ref: '#/components/schemas/Todo'
+      example:
+        todo:
+          id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+          body: Take a walk for 55 minutes
+          timestamp: 2023-02-02T18:15:00.771Z
+          isCompleted: false
+    Todo:
+      title: Todo
+      required:
+      - id
+      - body
+      - timestamp
+      - isCompleted
+      type: object
+      properties:
+        id:
+          type: string
+        body:
+          type: string
+        timestamp:
+          type: string
+        isCompleted:
+          type: boolean
+      example:
+        id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+        body: Take a walk for 55 minutes
+        timestamp: 2023-02-02T18:15:00.771Z
+        isCompleted: false
+    400BAD_REQUEST1:
+      title: 400BAD_REQUEST1
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+      example:
+        status: FAIL
+        message: body is a required field
+    500INTERNAL_SERVER_ERROR1:
+      title: 500INTERNAL_SERVER_ERROR1
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+      example:
+        status: ERROR
+        message: Something very unexpected happened
+    200OK:
+      title: 200OK
+      required:
+      - todo
+      type: object
+      properties:
+        todo:
+          $ref: '#/components/schemas/Todo'
+      example:
+        todo:
+          id: 41ad9650-121f-4a15-a2b8-7cb5735c2571
+          body: Take a walk for 55 minutes
+          timestamp: 2023-02-02T18:15:00.771Z
+          isCompleted: false
+    404NOT_FOUND1:
+      title: 404NOT_FOUND1
+      required:
+      - status
+      - message
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+      example:
+        status: FAIL
+        message: Could not find the requested resource
+    200OK1:
+      title: 200OK1
+      required:
+      - todos
+      type: object
+      properties:
+        todos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Todo'
+          description: ''
+      example:
+        todos:
+        - id: df3f2ecf-aa0b-4ce9-8bc7-685f76ad4e0e
+          body: Do something fun
+          timestamp: 2023-02-02T16:30:24.703Z
+          isCompleted: false
+        - id: 8e8111cb-007f-4ec1-80af-c54c1cf9609e
+          body: Take a walk for 35 minutes
+          timestamp: 2023-02-02T16:39:18.591Z
+          isCompleted: false
+        - id: f083fbfb-c60c-46a6-8dac-5c5a5113c0ee
+          body: Take a walk for 40 minutes
+          timestamp: 2023-02-02T16:39:46.623Z
+          isCompleted: false
+        - id: 4385b53c-3e53-4a18-b54d-e1478ca16ae5
+          body: Take a walk for 45 minutes
+          timestamp: 2023-02-02T16:40:41.062Z
+          isCompleted: false
+        - id: 4e8d03a6-6eae-48ce-b7c6-78c57f2f894c
+          body: Take a walk for 50 minutes
+          timestamp: 2023-02-02T16:44:46.954Z
+          isCompleted: false
+    UpdateatodoRequest:
+      title: UpdateatodoRequest
+      required:
+      - body
+      - isCompleted
+      type: object
+      properties:
+        body:
+          type: string
+        isCompleted:
+          type: boolean
+      example:
+        body: Take a run for 75 minutes
+        isCompleted: true
+tags:
+- name: Todos
+  description: Groups all operations related to your todos
+- name: Misc
+  description: ''
